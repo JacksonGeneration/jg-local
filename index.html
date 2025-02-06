@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My App Access Point</title>
+    <title>Redirecting to My App</title>
+    <script>
+        fetch('ip.txt')
+            .then(response => response.text())
+            .then(ip => {
+                window.location.href = `http://${ip}:8081/`;
+            })
+            .catch(error => {
+                console.error('Error fetching IP:', error);
+                document.body.innerHTML = 'Error loading application. Please try again later.';
+            });
+    </script>
 </head>
 <body>
-    <h1>Welcome to My App</h1>
-    <p>The current IP address is: <span id="ip-address">0.0.0.0</span></p>
+    <p>Loading application...</p>
 </body>
 </html>
